@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+
+  --blue: #38bdf8;
+  --green: #22c55e;
+  --red: #ef4444;
+
+  --white-95: rgba(255, 255, 255, 0.95);
+  --white-85: rgba(255, 255, 255, 0.85);
+  --white-70: rgba(255, 255, 255, 0.7);
+  --white-55: rgba(255, 255, 255, 0.55);
+  --white-35: rgba(255, 255, 255, 0.35);
+  --white-20: rgba(255, 255, 255, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: #000000;
+  color: #ffffff;
+
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+section[id] {
+  scroll-margin-top: 70px;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.game-font {
+  font-family: "Orbitron", Arial, sans-serif;
+}
+
+p,
+li,
+label,
+input,
+textarea {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   REMOVE ACTUAL GRAYS
+
+   Older neutral classes become white with opacity.
+   ========================================================= */
+
+.text-neutral-100,
+.text-neutral-200 {
+  color: var(--white-95) !important;
+}
+
+.text-neutral-300,
+.text-neutral-400 {
+  color: var(--white-85) !important;
+}
+
+.text-neutral-500,
+.text-neutral-600 {
+  color: var(--white-70) !important;
+}
+
+.text-neutral-700,
+.text-neutral-800 {
+  color: var(--white-55) !important;
+}
+
+/* =========================================================
+   FUTURISTIC CARD HOVER
+   ========================================================= */
+
+.game-hover {
+  position: relative;
+
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.game-hover::before,
+.game-hover::after {
+  content: "";
+
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition:
+    width 0.22s ease,
+    height 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.game-hover::before {
+  top: -1px;
+  left: -1px;
+
+  border-top: 2px solid var(--blue);
+  border-left: 2px solid var(--blue);
+
+  border-top-left-radius: 12px;
+}
+
+.game-hover::after {
+  right: -1px;
+  bottom: -1px;
+
+  border-right: 2px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
+
+  border-bottom-right-radius: 12px;
+}
+
+.game-hover:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--blue) !important;
+
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.15),
+    0 0 24px rgba(56, 189, 248, 0.12);
+}
+
+.game-hover:hover::before,
+.game-hover:hover::after {
+  width: 20px;
+  height: 20px;
+
+  opacity: 1;
+}
+
+/* =========================================================
+   BUTTON SCANNER
+   ========================================================= */
+
+.hud-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.hud-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.24),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.45s ease;
+}
+
+.hud-button:hover::before {
+  left: 150%;
+}
+
+/* =========================================================
+   TOP NAV
+   ========================================================= */
+
+.top-navigation {
+  background: rgba(0, 0, 0, 0.94);
+
+  backdrop-filter: blur(16px);
+
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.top-navigation::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -1px;
+
+  width: 35%;
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #38bdf8,
+    transparent
+  );
+
+  opacity: 0.55;
+}
+
+.nav-link {
+  position: relative;
+
+  color: #ffffff;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  transform: translateX(-50%);
+
+  background: #38bdf8;
+
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #38bdf8;
+
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.nav-link:hover::after {
+  width: 65%;
+}
+
+/* =========================================================
+   MOBILE BOTTOM NAVIGATION
+   ========================================================= */
+
+.mobile-nav-item {
+  color: #ffffff;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  color: #38bdf8;
+
+  background: rgba(56, 189, 248, 0.1);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+input,
+textarea {
+  background: #000000;
+  color: #ffffff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #38bdf8;
+  color: #000000;
+}
+
+/* Leave room for mobile navigation */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 88px;
+  }
+
+  .game-hover:hover {
+    transform: none;
+  }
+}
